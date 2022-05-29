@@ -73,6 +73,9 @@ public class AuthController {
         .body(new UserInfoResponse(userDetails.getId(),
                                    userDetails.getUsername(),
                                    userDetails.getEmail(),
+                                   userDetails.getFirst_name(),
+                                   userDetails.getLast_name(),
+                                   userDetails.getBirthday(),
                                    roles));
   }
 

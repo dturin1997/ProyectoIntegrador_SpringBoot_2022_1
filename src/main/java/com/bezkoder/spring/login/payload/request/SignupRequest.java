@@ -5,6 +5,21 @@ import java.util.Set;
 import javax.validation.constraints.*;
  
 public class SignupRequest {
+	/* Se agregó esto 1 */
+	  
+	  @NotBlank
+	  @Size(max = 55)
+	  private String first_name;
+	  
+	  @NotBlank
+	  @Size(max = 55)
+	  private String last_name;
+	  
+	  @NotBlank
+	  @Size(max = 55)
+	  private String birthday;
+	  
+	/* fin 1 */
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;
@@ -19,8 +34,33 @@ public class SignupRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
-  
-    public String getUsername() {
+    
+    
+    public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getUsername() {
         return username;
     }
  

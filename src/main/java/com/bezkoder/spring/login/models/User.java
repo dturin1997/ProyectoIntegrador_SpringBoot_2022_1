@@ -1,5 +1,6 @@
 package com.bezkoder.spring.login.models;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "users",
@@ -18,7 +21,21 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
+  /* Se agregó esto 1 */
+  
+  @NotBlank
+  @Size(max = 55)
+  private String first_name;
+  
+  @NotBlank
+  @Size(max = 55)
+  private String last_name;
+  
+  @NotBlank
+  @Size(max = 55)
+  private String birthday;
+  
+  /* fin 1 */
   @NotBlank
   @Size(max = 20)
   private String username;
@@ -41,13 +58,41 @@ public class User {
   public User() {
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String email, String password,
+		  String first_name, String last_name, String birthday) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.birthday = birthday;
   }
+  
+	public String getFirst_name() {
+		return first_name;
+	}
 
-  public Long getId() {
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+	
+	public String getLast_name() {
+		return last_name;
+	}
+	
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+	
+	public String getBirthday() {
+		return birthday;
+	}
+	
+	public void setBirthday(String birthdate) {
+		this.birthday = birthdate;
+	}
+
+	public Long getId() {
     return id;
   }
 

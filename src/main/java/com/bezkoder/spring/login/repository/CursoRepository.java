@@ -9,5 +9,6 @@ import com.bezkoder.spring.login.models.Curso;
 
 public interface CursoRepository extends JpaRepository<Curso, Long>{
 	List<Curso> findByNameContaining(String name);
+	List<Curso> findCursosByUsersId(Long userId);
 
 }

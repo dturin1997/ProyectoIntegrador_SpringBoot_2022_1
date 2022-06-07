@@ -51,12 +51,17 @@ public class User {
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	/* Se agregó esto 2 */
-
+/*
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "users")
 	@JsonIgnore
 	private Set<Curso> cursos = new HashSet<>();
-
+*/
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<CursoUser> cursoUser;
 	/* */
+/*	
+	private Set<CursoUser> cursoUsers = new HashSet<CursoUser>();
+*/	
 	public User() {
 	}
 
@@ -92,7 +97,7 @@ public class User {
 	public void setBirthday(String birthdate) {
 		this.birthday = birthdate;
 	}
-
+/*
 	public Long getId() {
 		return id;
 	}
@@ -100,7 +105,7 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+*/
 	public String getUsername() {
 		return username;
 	}
@@ -132,7 +137,7 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-
+/*
 	public Set<Curso> getCursos() {
 		return cursos;
 	}
@@ -140,5 +145,38 @@ public class User {
 	public void setCursos(Set<Curso> cursos) {
 		this.cursos = cursos;
 	}
+*/
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+/*	
+	@OneToMany(mappedBy = "primaryKey.user",
+            cascade = CascadeType.ALL)
+	public Set<CursoUser> getCursoUsers() {
+		return cursoUsers;
+	}
+
+	public void setCursoUsers(Set<CursoUser> cursoUsers) {
+		this.cursoUsers = cursoUsers;
+	}
+	
+	public void addCursoUser(CursoUser cursoUser) {
+        this.cursoUsers.add(cursoUser);
+    } 
+*/
+
+	public Set<CursoUser> getCursoUser() {
+		return cursoUser;
+	}
+
+	public void setCursoUser(Set<CursoUser> cursoUser) {
+		this.cursoUser = cursoUser;
+	}	
+	
 }
+

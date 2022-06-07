@@ -13,15 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "cursos")
 public class Curso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private int id;
 
 	@Column(name = "name")
 	private String name;
@@ -31,28 +31,33 @@ public class Curso {
 
 	@Column(name = "description")
 	private String description;
-
+	/*
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "cursos_users", joinColumns = { @JoinColumn(name = "cursos_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "users_id") })
 	private Set<User> users = new HashSet<>();
-	
+	*/
+/*	
+	private Set<CursoUser> cursoUsers = new HashSet<CursoUser>();
+*/	
+	@OneToMany(mappedBy = "curso")
+	private Set<CursoUser> cursoUser;
 	public Curso() {
 		
 	}
 	
 	public Curso(String name, double precio, String description) {
-		super();
 		this.name = name;
 		this.precio = precio;
 		this.description = description;
+		cursoUser = new HashSet<>();
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -79,7 +84,7 @@ public class Curso {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+/*
 	public Set<User> getUsers() {
 		return users;
 	}
@@ -100,12 +105,46 @@ public class Curso {
 	      user.getCursos().remove(this);
 	    }
 	  }
-
+*/
+	/*
 	@Override
 	public String toString() {
 		return "Curso [id=" + id + ", name=" + name + ", precio=" + precio + ", description=" + description + ", users="
 				+ users + "]";
 	}
-	
+*/
+/*
+	@OneToMany(mappedBy = "primaryKey.curso",
+            cascade = CascadeType.ALL)
+	public Set<CursoUser> getCursoUsers() {
+		return cursoUsers;
+	}
 
+	public void setCursoUsers(Set<CursoUser> cursoUsers) {
+		this.cursoUsers = cursoUsers;
+	}
+	
+	public void addCursoUserId(CursoUserId cursoUserId) {
+		//CursoUser cursoUser=new CursoUser(this,user);
+	    //this.cursoUsers.add(cursoUserId);
+	    //this.cursoUsers.add(cursoUser);
+	    //cursoUser.getCurso().add(this);
+	    //user.getCursos().add(this);
+	  }
+*/
+
+	public Set<CursoUser> getCursoUser() {
+		return cursoUser;
+	}
+
+	public void setCursoUser(Set<CursoUser> cursoUser) {
+		this.cursoUser = cursoUser;
+	}
+/*
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", name=" + name + ", precio=" + precio + ", description=" + description
+				+ ", cursoUser=" + cursoUser + "]";
+	}
+*/	
 }

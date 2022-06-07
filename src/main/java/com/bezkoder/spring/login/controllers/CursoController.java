@@ -26,7 +26,7 @@ import com.bezkoder.spring.login.repository.CursoRepository;
 public class CursoController {
 	@Autowired
 	  CursoRepository cursoRepository;
-	
+/*	
 	@GetMapping("/cursos")
 	  public ResponseEntity<List<Curso>> getAllCursos(@RequestParam(required = false) String name) {
 	    List<Curso> cursos = new ArrayList<Curso>();
@@ -48,4 +48,5 @@ public class CursoController {
 	    Curso _curso = cursoRepository.save(new Curso(curso.getName(), curso.getPrecio(),curso.getDescription()));
 	    return new ResponseEntity<>(_curso, HttpStatus.CREATED);
 	  }
+	  */
 }

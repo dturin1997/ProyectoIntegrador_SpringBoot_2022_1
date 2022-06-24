@@ -18,6 +18,11 @@ import com.bezkoder.spring.login.security.jwt.AuthEntryPointJwt;
 import com.bezkoder.spring.login.security.jwt.AuthTokenFilter;
 import com.bezkoder.spring.login.security.services.UserDetailsServiceImpl;
 
+import com.google.common.collect.ImmutableList;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -68,4 +73,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
   }
+  
+  @Bean
+  public CorsConfigurationSource corsConfigurationSource() {
+      final CorsConfiguration configuration = new CorsConfiguration();
+      //configuration.setAllowedOrigins(ImmutableList.of("http://localhost:8080","http://localhost:8084"));
+      configuration.setAllowedOrigins(ImmutableList.of("*"));
+      configuration.setAllowedMethods(ImmutableList.of("GET", "POST", "PUT", "DELETE", "PATCH"));
+      //configuration.setAllowCredentials(true);
+      configuration.setAllowedHeaders(ImmutableList.of("Authorization", "Cache-Control", "Content-Type"));
+      final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+      source.registerCorsConfiguration("/**", configuration);
+      return source;
+  }
+  
 }

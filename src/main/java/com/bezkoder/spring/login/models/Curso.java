@@ -31,6 +31,9 @@ public class Curso {
 
 	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "imagen")
+	private String imagen;
 	/*
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "cursos_users", joinColumns = { @JoinColumn(name = "cursos_id") }, inverseJoinColumns = {
@@ -46,12 +49,30 @@ public class Curso {
 		
 	}
 	
-	public Curso(String name, double precio, String description) {
+	
+
+	public Curso(String name, double precio, String description, String imagen, Set<CursoUser> cursoUser) {
+		super();
 		this.name = name;
 		this.precio = precio;
 		this.description = description;
-		cursoUser = new HashSet<>();
+		this.imagen = imagen;
+		this.cursoUser = cursoUser;
 	}
+
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 
 	public int getId() {
 		return id;
